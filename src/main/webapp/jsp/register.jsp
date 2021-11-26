@@ -41,15 +41,15 @@
 -->
 <div class="container-fluid">
     <div class="col-md-4">
-        <img src="${pageContext.request.contextPath}/img/logo2.png" />
+        <img src="${pageContext.request.contextPath}/img/logo2.png" height="50" width="50"/>
     </div>
     <div class="col-md-5">
         <img src="${pageContext.request.contextPath}/img/header.png" />
     </div>
     <div class="col-md-3" style="padding-top:20px">
         <ol class="list-inline">
-            <li><a href="login.jsp">登录</a></li>
-            <li><a href="register.jsp">注册</a></li>
+            <li><a href="login.htm">登录</a></li>
+            <li><a href="register.htm">注册</a></li>
             <li><a href="cart.htm">购物车</a></li>
         </ol>
     </div>

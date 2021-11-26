@@ -41,15 +41,15 @@
 
 <div class="container-fluid">
   <div class="col-md-4">
-    <img src="${pageContext.request.contextPath}/img/logo2.png" />
+    <img src="${pageContext.request.contextPath}/img/logo2.png" height="50" width="50" />
   </div>
   <div class="col-md-5">
     <img src="${pageContext.request.contextPath}/img/header.png" />
   </div>
   <div class="col-md-3" style="padding-top:20px">
     <ol class="list-inline">
-      <li><a href="login.jsp">登录</a></li>
-      <li><a href="register.jsp">注册</a></li>
+      <li><a href="login.htm">登录</a></li>
+      <li><a href="register.htm">注册</a></li>
       <li><a href="cart.htm">购物车</a></li>
     </ol>
   </div>
@@ -133,18 +133,7 @@
             </div>
 
           </div>
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox"> 自动登录
-                </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <label>
-                  <input type="checkbox"> 记住用户名
-                </label>
-              </div>
-            </div>
-          </div>
+
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <input type="submit"  width="100" value="登录" name="submit" border="0"

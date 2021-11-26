@@ -9,10 +9,11 @@ import com.wen.shop.web.servlet.base.BaseServlet;
 import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 
-
+@WebServlet(name = "UserServlet", value = "/user")
 public class UserServlet extends BaseServlet {
 
     public String loginUI(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
