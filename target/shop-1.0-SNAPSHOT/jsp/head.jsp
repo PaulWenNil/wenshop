@@ -35,7 +35,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">首页</a>
+                <a class="navbar-brand" href="${pageContext.request.contextPath}">首页</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -59,10 +59,10 @@
     $(function(){
         //发送ajax 查询所有分类
         $.post("${pageContext.request.contextPath}/category",{"method":"findAll"},function(obj){
-            alert(obj);
+            //alert(obj);
             //遍历json列表,获取每一个分类,包装成li标签,插入到ul内部
             $(obj).each(function(){
-                $("#c_ul").append("<li><a href='#'>"+this.cname+"</a></li>");
+                $("#c_ul").append("<li><a href='${pageContext.request.contextPath}/product?method=findByPage&pageNumber=1&cid="+this.cid+"'>"+this.cname+"</a></li>");
             });
         },"json");
     })

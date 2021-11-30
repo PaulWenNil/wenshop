@@ -6,7 +6,7 @@ import javax.servlet.annotation.*;
 import java.lang.reflect.Method;
 import java.io.IOException;
 
-@WebServlet(name = "BaseServlet", value = "/BaseServlet")
+@WebServlet(name = "BaseServlet", value = "/base")
 public class BaseServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response)throws ServletException{
         try {

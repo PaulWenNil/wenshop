@@ -7,7 +7,7 @@
 </head>
 <body>
 <%
-    response.sendRedirect(request.getContextPath()+"/jsp/index.jsp");
+  request.getRequestDispatcher("/index").forward(request,response);
 %>
 </body>
 </html>
