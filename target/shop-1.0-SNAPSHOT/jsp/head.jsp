@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="container-fluid">
     <div class="col-md-4">
         <img src="${pageContext.request.contextPath}/img/logo2.png" height="50" width="50"/>
@@ -15,8 +15,8 @@
                 <li><a href="${pageContext.request.contextPath }/user?method=registUI">注册</a></li>
             </c:if>
             <c:if test="${not empty user}">
-                ${user.name }:你好
-                <li><a href="${pageContext.request.contextPath }/user?method=registUI">我的订单</a></li>
+                <a href="${pageContext.request.contextPath }/user?method=getM&uid=${user.uid}">${user.name }</a>:你好
+                <li><a href="${pageContext.request.contextPath }/order?method=findMyOrdersByPage&pageNumber=1">我的订单</a></li>
                 <li><a href="${pageContext.request.contextPath }/user?method=logout">退出</a></li>
             </c:if>
             <li><a href="cart.htm">购物车</a></li>

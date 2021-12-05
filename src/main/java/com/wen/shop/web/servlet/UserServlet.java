@@ -15,6 +15,20 @@ import java.io.IOException;
 
 @WebServlet(name = "UserServlet", value = "/user")
 public class UserServlet extends BaseServlet {
+    //查询余额
+    public String getM(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            UserService us = new UserServiceImpl();
+            String uid = request.getParameter("uid");
+            User user=us.findUser(uid);
+            request.setAttribute("msg","您的余额为"+user.getMoney());
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("msg","查找余额失败");
+            return "/jsp/msg.jsp";
+        }
+        return "/jsp/msg.jsp";
+    }
 
     public String loginUI(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //跳转到登录页面

@@ -44,4 +44,10 @@ public class UserServiceImpl implements UserService{
         return ud.getByUsernameAndPwd(username,password);
     }
 
+    //查找用户
+    public User findUser(String uid) throws Exception {
+        UserDao ud = new UserDaoImpl();
+        return ud.findUser(uid);
+    }
+
 }

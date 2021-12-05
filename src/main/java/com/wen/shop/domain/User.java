@@ -14,6 +14,15 @@ public class User {
     private Integer state;
 
     private String code;
+    private int money;
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
 
     public Integer getState() {
         return state;

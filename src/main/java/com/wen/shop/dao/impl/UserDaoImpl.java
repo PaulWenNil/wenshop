@@ -39,5 +39,12 @@ public class UserDaoImpl implements UserDao {
         return qr.query(sql,new BeanHandler<>(User.class),username,password);
     }
 
+    //查找用户
+    public User findUser(String uid) throws Exception {
+        QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
+        String sql = "select * from user where uid=?";
+        return qr.query(sql,new BeanHandler<>(User.class),uid);
+    }
+
 
 }

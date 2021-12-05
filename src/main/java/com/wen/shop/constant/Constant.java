@@ -15,4 +15,17 @@ public interface Constant {
 
     //商品已下架
     int PRODUCT_IS_DOWN = 1;
+
+    //订单状态
+    //未付款
+    int ORDER_NOT_PAY = 0;
+
+    //已付款
+    int ORDER_PAY = 1;
+
+    //已发货
+    int ORDER_SEND = 2;
+
+    //已完成
+    int ORDER_FINISH = 3;
 }

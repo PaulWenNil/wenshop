@@ -10,4 +10,6 @@ public interface UserDao {
     void update(User user) throws Exception;
 
     User getByUsernameAndPwd(String username, String password) throws Exception;
+
+    User findUser(String uid) throws Exception;
 }
