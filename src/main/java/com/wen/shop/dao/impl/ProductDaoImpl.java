@@ -73,4 +73,22 @@ public class ProductDaoImpl implements ProductDao {
                 p.getIs_hot(),p.getPdesc(),p.getPflag(),
                 p.getCategory().getCid());
     }
+
+    @Override
+    //后台删除商品
+    public void deletePro(String pid) throws Exception {
+        QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
+        String sql = "delete from product where pid=?";
+        qr.update(sql,pid);
+    }
+
+    @Override
+    //后台修改商品
+    public void edit(Product p) throws Exception {
+        QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
+        String sql = "update product set pname=?,market_price=?,shop_price=?,pimage=?,is_hot=?,pdesc=?,cid=? where pid=?";
+        qr.update(sql, p.getPname(),p.getMarket_price(),
+                p.getShop_price(), p.getPimage(), p.getIs_hot(),
+                p.getPdesc(), p.getCategory().getCid(),p.getPid());
+    }
 }

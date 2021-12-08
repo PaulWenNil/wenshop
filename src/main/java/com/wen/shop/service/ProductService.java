@@ -18,4 +18,7 @@ public interface ProductService {
 
     void save(Product p) throws Exception;
 
+    void deletePro(String pid) throws Exception;
+
+    void edit(Product p) throws Exception;
 }

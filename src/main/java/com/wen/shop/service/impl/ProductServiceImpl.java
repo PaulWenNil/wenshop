@@ -62,4 +62,18 @@ public class ProductServiceImpl implements ProductService {
         pDao.save(p);
     }
 
+    @Override
+    //后台删除商品
+    public void deletePro(String pid) throws Exception {
+        ProductDao pDao = new ProductDaoImpl();
+        pDao.deletePro(pid);
+    }
+
+    @Override
+    //后台修改商品
+    public void edit(Product p) throws Exception {
+        ProductDao pDao = new ProductDaoImpl();
+        pDao.edit(p);
+    }
+
 }

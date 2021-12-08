@@ -97,15 +97,16 @@ public class EditProductServlet extends HttpServlet {
                 }
             }
 
-            com.jspsmart.upload.SmartUpload su = new  com.jspsmart.upload.SmartUpload();
-            su.initialize(this,request,response);
-            su.setTotalMaxFileSize(100000000);
-            su.upload();
+            //用session来获取pid
+            HttpSession session = request.getSession();
+            String pid =  (String)session.getAttribute("pid");
 
-            String pid = su.getRequest().getParameter("pid");
-            System.out.println(pid);
+            //调用productservice获取商品信息
             ProductService ps = new ProductServiceImpl();
             Product p = ps.getById(pid);
+
+            //设置session的pid为空
+            session.setAttribute("pid",null);
 
             //使用beanutils封装
             BeanUtils.populate(p,map);
@@ -116,7 +117,7 @@ public class EditProductServlet extends HttpServlet {
             p.setCategory(c);
 
             //调用service完成保存操作
-            ps.save(p);
+            ps.edit(p);
 
             //重定向
             response.sendRedirect(request.getContextPath()+"/adminProduct?method=findAll");

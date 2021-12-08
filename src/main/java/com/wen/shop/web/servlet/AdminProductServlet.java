@@ -16,13 +16,36 @@ import java.util.List;
 //后台商品模块
 @WebServlet(name = "AdminProductServlet", value = "/adminProduct")
 public class AdminProductServlet extends BaseServlet {
+    //删除商品
+    public String deletePro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            ProductService ps = new ProductServiceImpl();
+            String pid = request.getParameter("pid");
+            ps.deletePro(pid);
+
+            response.sendRedirect(request.getContextPath()+"/adminProduct?method=findAll");
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
+        return null;
+    }
+
     //跳转到修改的页面上
     public String editUI(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             //调用categoryservice 查询所有分类
             CategoryService cs = new CategoryServiceImpl();
             request.setAttribute("list",cs.findList());
-            request.setAttribute("pid",request.getParameter("pid"));
+
+            //调用productservice 查询商品
+            ProductService ps = new ProductServiceImpl();
+            String productId = request.getParameter("pid");
+            Product p = ps.getById(productId);
+            request.setAttribute("p",p);
+
+            HttpSession session = request.getSession();
+            session.setAttribute("pid",productId);
         } catch (Exception e) {
         }
         return "/admin/product/edit.jsp";

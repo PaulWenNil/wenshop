@@ -19,4 +19,8 @@ public interface ProductDao {
     List<Product> findAll() throws Exception;
 
     void save(Product p) throws Exception;
+
+    void deletePro(String pid) throws Exception;
+
+    void edit(Product p) throws Exception;
 }

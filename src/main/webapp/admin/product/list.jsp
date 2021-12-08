@@ -84,7 +84,7 @@
 											</td>
 									
 											<td align="center" style="HEIGHT: 22px">
-												<a href="${ pageContext.request.contextPath }/adminProduct_delete.action?pid=">
+												<a href="${ pageContext.request.contextPath }/adminProduct?method=deletePro&pid=${p.pid}">
 													<img src="${pageContext.request.contextPath}/images/i_del.gif" width="16" height="16" border="0" style="CURSOR: hand">
 												</a>
 											</td>
