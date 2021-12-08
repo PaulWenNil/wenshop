@@ -95,7 +95,8 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public Product getByName(String pname) throws Exception {
             QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
-            String sql = "select * from product where pname like '%?%' limit 1";
-            return qr.query(sql, new BeanHandler<>(Product.class),pname);
+            String sql = "select * from product where pname like ? limit 1";
+            String pp = "%"+pname+"%";
+            return qr.query(sql, new BeanHandler<>(Product.class),pp);
         }
 }

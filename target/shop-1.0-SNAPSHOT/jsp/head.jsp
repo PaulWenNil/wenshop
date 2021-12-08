@@ -42,9 +42,11 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav" id="c_ul">
                 </ul>
-                <form class="navbar-form navbar-right" role="search" action="${pageContext.request.contextPath}/product?method=getByName">
+                <form class="navbar-form navbar-right" role="search" action="${pageContext.request.contextPath}/product" method="post">
                     <div class="form-group">
                         <input type="text" name="pname" class="form-control" placeholder="Search">
+                        <input type="hidden" name="method" value="getByName">
+                        <input type="hidden" name="pname" value="${param.pname}">
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
 

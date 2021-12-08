@@ -39,7 +39,7 @@ public class ProductServlet extends BaseServlet {
         try {
             //获取pname
             String pname = request.getParameter("pname");
-            System.out.println(pname);
+
             //调用service获取单个商品 参数：pname 返回值：product
             ProductService ps = new ProductServiceImpl();
             Product pro = ps.getByName(pname);
