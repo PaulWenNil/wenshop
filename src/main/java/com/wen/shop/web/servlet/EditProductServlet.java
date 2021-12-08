@@ -7,10 +7,8 @@ import com.wen.shop.service.ProductService;
 import com.wen.shop.service.impl.ProductServiceImpl;
 import com.wen.shop.utils.UUIDUtils;
 import com.wen.shop.utils.UploadUtils;
-import com.wen.shop.web.servlet.base.BaseServlet;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
@@ -27,10 +25,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//保存商品
-@WebServlet(name = "AddProductServlet", value = "/addProduct")
-public class AddProductServlet extends HttpServlet {
-
+@WebServlet(name = "EditProductServlet", value = "/editProduct")
+public class EditProductServlet extends HttpServlet {
+    //修改商品
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             //使用fileupload保存图片和将商品的信息放入map
@@ -48,7 +45,7 @@ public class AddProductServlet extends HttpServlet {
 
             //遍历list 获取每一个文件项
             for (FileItem fi: list
-                 ) {
+            ) {
                 //获取name属性值
                 String key = fi.getFieldName();
 
@@ -100,13 +97,15 @@ public class AddProductServlet extends HttpServlet {
                 }
             }
 
-            //封装product对象
-            Product p = new Product();
+            com.jspsmart.upload.SmartUpload su = new  com.jspsmart.upload.SmartUpload();
+            su.initialize(this,request,response);
+            su.setTotalMaxFileSize(100000000);
+            su.upload();
 
-            //手动设置pid pdate pflag
-            map.put("pid", UUIDUtils.getId());
-            map.put("pdate",new Date());
-            map.put("pflag", Constant.PRODUCT_IS_UP);
+            String pid = su.getRequest().getParameter("pid");
+            System.out.println(pid);
+            ProductService ps = new ProductServiceImpl();
+            Product p = ps.getById(pid);
 
             //使用beanutils封装
             BeanUtils.populate(p,map);
@@ -117,15 +116,13 @@ public class AddProductServlet extends HttpServlet {
             p.setCategory(c);
 
             //调用service完成保存操作
-            ProductService ps = new ProductServiceImpl();
             ps.save(p);
 
             //重定向
             response.sendRedirect(request.getContextPath()+"/adminProduct?method=findAll");
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException("保存商品失败");
+            throw new RuntimeException("修改商品失败");
         }
     }
-
 }

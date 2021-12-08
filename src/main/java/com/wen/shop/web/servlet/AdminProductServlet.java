@@ -16,6 +16,17 @@ import java.util.List;
 //后台商品模块
 @WebServlet(name = "AdminProductServlet", value = "/adminProduct")
 public class AdminProductServlet extends BaseServlet {
+    //跳转到修改的页面上
+    public String editUI(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            //调用categoryservice 查询所有分类
+            CategoryService cs = new CategoryServiceImpl();
+            request.setAttribute("list",cs.findList());
+            request.setAttribute("pid",request.getParameter("pid"));
+        } catch (Exception e) {
+        }
+        return "/admin/product/edit.jsp";
+    }
     //跳转到添加的页面上
     public String addUI(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {

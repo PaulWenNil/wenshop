@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <HTML>
 	<HEAD>
 		<meta http-equiv="Content-Language" content="zh-cn">
@@ -8,10 +9,8 @@
 	
 	<body>
 		<!--  -->
-		<form id="userAction_save_do" name="Form1" action="${pageContext.request.contextPath}/adminProduct_update.action" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="pid" value="">
-			
-			
+		<form id="userAction_save_do" name="Form1" action="${pageContext.request.contextPath}/editProduct" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="pid" value="${pid}">
 			&nbsp;
 			<table cellSpacing="1" cellPadding="5" width="100%" align="center" bgColor="#eeeeee" style="border: 1px solid #8ba7e3" border="0">
 				<tr>
@@ -59,7 +58,7 @@
 						商品图片：
 					</td>
 					<td class="ta_01" bgColor="#ffffff" colspan="3">
-						<input type="file" name="upload" />
+						<input type="file" name="pimage" />
 					</td>
 				</tr>
 				<tr>
@@ -67,10 +66,10 @@
 						所属分类：
 					</td>
 					<td class="ta_01" bgColor="#ffffff" colspan="3">
-						<select name="categorySecond.csid">
-							
-								<option value=""></option>
-							
+						<select name="cid">
+							<c:forEach items="${list}" var="c">
+								<option value="${c.cid}">${c.cname}</option>
+							</c:forEach>
 						</select>
 					</td>
 				</tr>
