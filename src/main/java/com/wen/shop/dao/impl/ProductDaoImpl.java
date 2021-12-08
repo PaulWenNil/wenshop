@@ -91,4 +91,11 @@ public class ProductDaoImpl implements ProductDao {
                 p.getShop_price(), p.getPimage(), p.getIs_hot(),
                 p.getPdesc(), p.getCategory().getCid(),p.getPid());
     }
+
+    @Override
+    public Product getByName(String pname) throws Exception {
+            QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
+            String sql = "select * from product where pname like '%?%' limit 1";
+            return qr.query(sql, new BeanHandler<>(Product.class),pname);
+        }
 }

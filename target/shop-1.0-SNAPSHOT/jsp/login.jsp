@@ -45,7 +45,7 @@
 
     <div class="col-md-5">
       <div style="width:440px;border:1px solid #E7E7E7;padding:20px 0 20px 30px;border-radius:5px;margin-top:60px;background:#fff;">
-        <font>会员登录</font>USER LOGIN ${msg }
+        <font>用户登录</font>USER LOGIN ${msg }
 
         <div>&nbsp;</div>
         <form class="form-horizontal" action="${pageContext.request.contextPath }/user" method="post">

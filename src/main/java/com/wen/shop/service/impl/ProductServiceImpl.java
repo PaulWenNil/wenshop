@@ -76,4 +76,11 @@ public class ProductServiceImpl implements ProductService {
         pDao.edit(p);
     }
 
+    @Override
+    //单个商品详情
+    public Product getByName(String pname) throws Exception {
+        ProductDao pd = new ProductDaoImpl();
+        return pd.getByName(pname);
+    }
+
 }

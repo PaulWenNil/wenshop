@@ -14,7 +14,7 @@ import java.io.IOException;
 //前台商品模块
 @WebServlet(name = "ProductServlet", value = "/product")
 public class ProductServlet extends BaseServlet {
-    //商品详情
+    //通过pid获取商品详情
     public String getById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             //获取pid
@@ -33,6 +33,26 @@ public class ProductServlet extends BaseServlet {
 
         return "/jsp/product_info.jsp";
     }
+
+    //通过pid获取商品详情
+    public String getByName(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            //获取pname
+            String pname = request.getParameter("pname");
+            System.out.println(pname);
+            //调用service获取单个商品 参数：pname 返回值：product
+            ProductService ps = new ProductServiceImpl();
+            Product pro = ps.getByName(pname);
+
+            //将product放入request域中，请求转发/jsp/product_info.jsp
+            request.setAttribute("bean",pro);
+        } catch (Exception e) {
+            request.setAttribute("msg","查询此商品失败");
+            return "/jsp/msg.jsp";
+        }
+        return "/jsp/product_info.jsp";
+    }
+
     //分类商品分页展示
     public String findByPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {

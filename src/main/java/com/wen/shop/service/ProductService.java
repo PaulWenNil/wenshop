@@ -21,4 +21,6 @@ public interface ProductService {
     void deletePro(String pid) throws Exception;
 
     void edit(Product p) throws Exception;
+
+    Product getByName(String pname) throws Exception;
 }

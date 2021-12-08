@@ -5,7 +5,7 @@
 <head></head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>会员注册</title>
+<title>用户注册</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css" />
 <script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js" type="text/javascript"></script>
@@ -47,7 +47,7 @@
 
 
         <div class="col-md-8" style="background:#fff;padding:40px 80px;margin:30px;border:7px solid #ccc;">
-            <font>会员注册</font>USER REGISTER
+            <font>用户注册</font>USER REGISTER
             <form class="form-horizontal" style="margin-top:5px;" method="post" action="${pageContext.request.contextPath }/user">
                 <input type="hidden" name="method" value="regist">
                 <div class="form-group">
