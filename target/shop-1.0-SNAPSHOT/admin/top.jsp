@@ -87,7 +87,7 @@ else
 										</td>
 										<td width="155" valign="bottom"
 											background="${pageContext.request.contextPath}/images/mis_05b.jpg">
-											用户名：
+											管理员用户名：
 											<font color="blue"><s:property value="#session.existAdminUser.username"/></font>
 										</td>
 										<td width="10" align="right"

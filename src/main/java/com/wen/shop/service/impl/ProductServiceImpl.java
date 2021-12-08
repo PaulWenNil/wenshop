@@ -47,4 +47,18 @@ public class ProductServiceImpl implements ProductService {
 
         return pb;
     }
+
+    @Override
+    //后台展示已上架商品
+    public List<Product> findAll() throws Exception {
+        ProductDao pDao = new ProductDaoImpl();
+        return pDao.findAll();
+    }
+
+    @Override
+    //后台保存商品
+    public void save(Product p) throws Exception {
+        ProductDao pDao = new ProductDaoImpl();
+        pDao.save(p);
+    }
 }

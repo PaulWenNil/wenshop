@@ -22,14 +22,7 @@
 							<strong>商品列表</strong>
 						</TD>
 					</tr>
-					<tr>
-						<td class="ta_01" align="right">
-							<button type="button" id="add" name="add" value="添加" class="button_add" onclick="addProduct()">
-&#28155;&#21152;
-</button>
 
-						</td>
-					</tr>
 					<tr>
 						<td class="ta_01" align="center" bgColor="#f5fafe">
 							<table cellspacing="0" cellpadding="1" rules="all"
@@ -73,7 +66,7 @@
 											</td>
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="17%">
-												${p.market_price }
+												${p.pname }
 											</td>
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="17%">

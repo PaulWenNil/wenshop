@@ -7,7 +7,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>会员登录</title>
+		<title>商品信息</title>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css" />
 		<script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js" type="text/javascript"></script>
 		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js" type="text/javascript"></script>
@@ -32,12 +32,6 @@
 
 		<div class="container">
 			<div class="row">
-				<div style="border: 1px solid #e4e4e4;width:930px;margin-bottom:10px;margin:0 auto;padding:10px;margin-bottom:10px;">
-					<a href="./index.htm">首页&nbsp;&nbsp;&gt;</a>
-					<a href="./蔬菜分类.htm">蔬菜&nbsp;&nbsp;&gt;</a>
-					<a>无公害蔬菜</a>
-				</div>
-
 				<div style="margin:0 auto;width:950px;">
 					<div class="col-md-6">
 						<img style="opacity: 1;width:400px;height:350px;" title="" class="medium" src="${pageContext.request.contextPath}/${bean.pimage}">

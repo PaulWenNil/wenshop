@@ -15,4 +15,18 @@ public class CategoryDaoImpl implements CategoryDao {
         String sql = "select * from category";
         return qr.query(sql,new BeanListHandler<>(Category.class));
     }
+
+    //保存分类
+    public void save(Category c) throws Exception {
+        QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
+        String sql = "insert into category values(?,?)";
+        qr.update(sql,c.getCid(),c.getCname());
+    }
+
+    //修改分类名
+    public void editCname(String cname, String cid) throws Exception {
+        QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
+        String sql = "update category set cname=? where cid=?";
+        qr.update(sql,cname,cid);
+    }
 }

@@ -51,7 +51,26 @@ public class ProductDaoImpl implements ProductDao {
     //获取总记录数
     public int getTotalRecord(String cid) throws Exception {
         QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
-        String sql ="select count(*) from product where cid =? and pflag=?";
+        String sql ="select count(*) from product where cid = ? and pflag = ?";
         return ((Long)qr.query(sql, new ScalarHandler<>(),cid,Constant.PRODUCT_IS_UP)).intValue();
+    }
+
+    @Override
+    //后台展示已上架商品
+    public List<Product> findAll() throws Exception {
+        QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
+        String sql = "select * from product where pflag = ? order by pdate desc";
+        return qr.query(sql,new BeanListHandler<>(Product.class),Constant.PRODUCT_IS_UP);
+    }
+
+    @Override
+    //后台保存商品
+    public void save(Product p) throws Exception {
+        QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
+        String sql = "insert into product values(?,?,?,?,?,?,?,?,?,?)";
+        qr.update(sql,p.getPid(), p.getPname(),p.getMarket_price(),
+                p.getShop_price(), p.getPimage(),p.getPdate(),
+                p.getIs_hot(),p.getPdesc(),p.getPflag(),
+                p.getCategory().getCid());
     }
 }
