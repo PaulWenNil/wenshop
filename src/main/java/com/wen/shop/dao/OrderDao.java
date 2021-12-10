@@ -21,4 +21,6 @@ public interface OrderDao {
     void update(Order order) throws Exception;
 
     void setMoney(String uid, int money) throws Exception;
+
+    List<Order> findAllByState(String state) throws Exception;
 }

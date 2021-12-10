@@ -75,8 +75,16 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
+    //设置余额
     public void setMoney(String uid,int money) throws Exception {
         OrderDao od = new OrderDaoImpl();
         od.setMoney(uid,money);
+    }
+
+    @Override
+    //后台查询订单列表
+    public List<Order> findAllByState(String state) throws Exception {
+        OrderDao od = new OrderDaoImpl();
+        return od.findAllByState(state);
     }
 }

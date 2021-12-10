@@ -16,6 +16,27 @@ import java.util.Date;
 //订单模块
 @WebServlet(name = "OrderServlet", value = "/order")
 public class OrderServlet extends BaseServlet {
+    //更改订单为已完成
+    public String updateState(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            //获取oid
+            String oid = request.getParameter("oid");
+
+            //调用service 获取订单
+            OrderService os = new OrderServiceImpl();
+            Order order = os.getById(oid);
+
+            //设置订单的状态，更新
+            order.setState(Constant.ORDER_FINISH);
+            os.update(order);
+
+            request.setAttribute("msg","感谢您的这次购物，欢迎下次光临");
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("msg","确认收货失败，请去官网查看订单详情");
+        }
+        return "/jsp/msg.jsp";
+    }
 
     //获取订单详情
     public String getById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

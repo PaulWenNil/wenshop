@@ -85,6 +85,11 @@ public class OrderDaoImpl implements OrderDao {
         String sql = "select * from orders where oid =?";
         Order order = qr.query(sql, new BeanHandler<>(Order.class), oid);
 
+        //设置user对象
+        sql = "select * from user u,orders o where u.uid=o.uid";
+        User user = qr.query(sql,new BeanHandler<>(User.class));
+        order.setUser(user);
+
         //查询订单项
         sql= "select * from orderitem oi,product p where oi.pid = p.pid and oi.oid=?";
         List<Map<String, Object>> mapList = qr.query(sql, new MapListHandler(), oid);
@@ -124,5 +129,20 @@ public class OrderDaoImpl implements OrderDao {
         QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
         String sql = "update user set money=? where uid=?";
         qr.update(sql,money,uid);
+    }
+
+    @Override
+    //后台查询订单列表
+    public List<Order> findAllByState(String state) throws Exception {
+        QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
+        String sql = "select * from orders";
+
+        //判断state是否为空
+        if(state==null || state.trim().length()==0) {
+            sql +=" order by ordertime desc";
+            return qr.query(sql,new BeanListHandler<>(Order.class));
+        }
+        sql += " where state = ? order by ordertime desc";
+        return qr.query(sql,new BeanListHandler<>(Order.class),state);
     }
 }

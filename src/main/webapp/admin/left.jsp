@@ -31,7 +31,11 @@
 		d.add('010401','0104','已上架商品列表','${pageContext.request.contextPath}/adminProduct?method=findAll','','mainFrame');
         d.add('010402','0104','添加商品','${pageContext.request.contextPath}/adminProduct?method=addUI','','mainFrame');
 		d.add('0105','01','订单管理');
-		d.add('010501','0105','订单管理','${pageContext.request.contextPath}/adminOrder_findAll.action?page=1','','mainFrame');
+		d.add('010501','0105','订单列表','${pageContext.request.contextPath}/adminOrder?method=findAllByState','','mainFrame');
+        d.add('010502','0105','未付款订单','${pageContext.request.contextPath}/adminOrder?method=findAllByState&state=0','','mainFrame');
+        d.add('010503','0105','已付款订单','${pageContext.request.contextPath}/adminOrder?method=findAllByState&state=1','','mainFrame');
+        d.add('010504','0105','已发货订单','${pageContext.request.contextPath}/adminOrder?method=findAllByState&state=2','','mainFrame');
+        d.add('010505','0105','已完成订单','${pageContext.request.contextPath}/adminOrder?method=findAllByState&state=3','','mainFrame');
 		document.write(d);
 		
 	</script>
