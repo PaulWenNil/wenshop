@@ -35,7 +35,7 @@ public class AdminOrderServlet extends BaseServlet {
             os.update(order);
 
             //发送确认收货邮件
-            String emailMsg = "您购买的订单号为："+oid+"的商品已发货,若已收货请<a href='http://localhost:8080/shop/order?method=updateState&oid="+oid+"'>点此确认收货</a>";
+            String emailMsg = "您购买的订单号为："+oid+"的商品已发货,若已收货请<a href='http://120.79.99.56:8080/shop/order?method=updateState&oid="+oid+"'>点此确认收货</a>";
             MailUtils.sendMail(order.getUser().getEmail(), emailMsg);
 
             //重定向

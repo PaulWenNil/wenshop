@@ -1,5 +1,8 @@
 package com.wen.shop.utils;
 
+import com.sun.mail.util.MailSSLSocketFactory;
+
+import java.security.GeneralSecurityException;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
@@ -13,19 +16,31 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
 
+
+import javax.mail.Address;
+
+
 public class MailUtils {
 
 	public static void sendMail(String email, String emailMsg)
-			throws AddressException, MessagingException {
+			throws AddressException, MessagingException, GeneralSecurityException {
+		final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";//SSL加密
+		MailSSLSocketFactory sf = new MailSSLSocketFactory();
+		sf.setTrustAllHosts(true);
 		// 1.创建一个程序与邮件服务器会话对象 Session
 
 		Properties props = new Properties();
-		//设置发送的协议
-		props.setProperty("mail.transport.protocol", "SMTP");
+		//设置
+		props.put("mail.transport.protocol", "SMTP");
+		props.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
+		props.setProperty("mail.smtp.socketFactory.fallback", "false");
+		props.setProperty("mail.smtp.port", "465");
+		props.setProperty("mail.smtp.socketFactory.port", "465");
 		
 		//设置发送邮件的服务器
 		props.setProperty("mail.host", "smtp.qq.com");
 		props.setProperty("mail.smtp.auth", "true");// 指定验证为true
+
 
 		// 创建验证器
 		Authenticator auth = new Authenticator() {

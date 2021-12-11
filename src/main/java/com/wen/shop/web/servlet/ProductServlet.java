@@ -34,7 +34,7 @@ public class ProductServlet extends BaseServlet {
         return "/jsp/product_info.jsp";
     }
 
-    //通过pid获取商品详情
+    //通过pname获取商品详情
     public String getByName(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             //获取pname

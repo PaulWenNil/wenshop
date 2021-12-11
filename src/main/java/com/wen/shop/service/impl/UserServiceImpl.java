@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService{
         ud.save(user);
 
         //发送激活邮件
-        String emailMsg = "欢迎"+user.getName()+"成为商城的一员,<a href='http://localhost:8080/shop/user?method=active&code="+user.getCode()+"'>点此激活</a>";
+        String emailMsg = "欢迎"+user.getName()+"成为商城的一员,<a href='http://120.79.99.56:8080/shop/user?method=active&code="+user.getCode()+"'>点此激活</a>";
         MailUtils.sendMail(user.getEmail(), emailMsg);
     }
 
