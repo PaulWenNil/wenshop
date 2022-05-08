@@ -2,9 +2,12 @@ package com.wen.shop.web.servlet;
 
 import com.wen.shop.constant.Constant;
 import com.wen.shop.domain.User;
+import com.wen.shop.service.UserLoginService;
 import com.wen.shop.service.UserService;
+import com.wen.shop.service.impl.UserLoginServiceImpl;
 import com.wen.shop.service.impl.UserServiceImpl;
 import com.wen.shop.utils.UUIDUtils;
+import com.wen.shop.utils.UserAgentUtils;
 import com.wen.shop.web.servlet.base.BaseServlet;
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -55,7 +58,13 @@ public class UserServlet extends BaseServlet {
                 request.setAttribute("msg","请先去邮箱激活再登录");
                 return "/jsp/msg.jsp";
             }
-
+            UserLoginService uls = new UserLoginServiceImpl();
+            String IP = UserAgentUtils.getIpAddr(request);
+            String os = UserAgentUtils.getOS(request);
+            String clientType = UserAgentUtils.getClientType(request);
+            String browser = UserAgentUtils.getBrowser(request);
+            Long time = System.currentTimeMillis();
+            uls.insert(user, IP, os, clientType, browser, time, Constant.LOGIN_NOW);
             //登录成功，保存用户登录状态
             request.getSession().setAttribute("user",user);
 
@@ -128,9 +137,21 @@ public class UserServlet extends BaseServlet {
     }
 
     //用户退出
-    public String logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getSession().invalidate();
+    public String logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
+        User user = (User) request.getSession().getAttribute("user");
+
+        UserLoginService uls = new UserLoginServiceImpl();
+
+        String IP = UserAgentUtils.getIpAddr(request);
+        String os = UserAgentUtils.getOS(request);
+        String clientType = UserAgentUtils.getClientType(request);
+        String browser = UserAgentUtils.getBrowser(request);
+        Long time = System.currentTimeMillis();
+
+        uls.insert(user, IP, os, clientType, browser, time, Constant.EXIT_NOW);
+
+        request.getSession().invalidate();
         response.sendRedirect(request.getContextPath());
         return null;
     }

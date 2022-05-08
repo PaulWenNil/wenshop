@@ -6,11 +6,6 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link href="${pageContext.request.contextPath}/css/Style1.css" rel="stylesheet" type="text/css" />
 		<script language="javascript" src="${pageContext.request.contextPath}/js/public.js"></script>
-		<script type="text/javascript">
-			function addProduct(){
-				window.location.href = "${pageContext.request.contextPath}/adminProduct_addPage.action";
-			}
-		</script>
 	</HEAD>
 	<body>
 		<br>
@@ -19,7 +14,7 @@
 				<TBODY>
 					<tr>
 						<td class="ta_01" align="center" bgColor="#afd1f3">
-							<strong>商品列表</strong>
+							<strong>销售员列表</strong>
 						</TD>
 					</tr>
 
@@ -35,16 +30,16 @@
 										序号
 									</td>
 									<td align="center" width="17%">
-										商品图片
+										SID
 									</td>
 									<td align="center" width="17%">
-										商品名称
+										销售员名称
 									</td>
 									<td align="center" width="17%">
-										商品价格
+										销售员账户
 									</td>
 									<td align="center" width="17%">
-										是否热门
+										销售员密码
 									</td>
 									<td width="7%" align="center">
 										编辑
@@ -53,7 +48,7 @@
 										删除
 									</td>
 								</tr>
-								<c:forEach items="${list }" var="p" varStatus="vs">
+								<c:forEach items="${list }" var="s" varStatus="vs">
 										<tr onmouseover="this.style.backgroundColor = 'white'"
 											onmouseout="this.style.backgroundColor = '#F5FAFE';">
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
@@ -62,29 +57,28 @@
 											</td>
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="17%">
-												<img width="40" height="45" src="${ pageContext.request.contextPath }/${p.pimage}">
+												${s.sid}
 											</td>
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="17%">
-												${p.pname }
+												${s.name }
 											</td>
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="17%">
-												${p.shop_price }
+												${s.sellername }
 											</td>
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="17%">
-												<c:if test="${p.is_hot==1 }">是</c:if>
-												<c:if test="${p.is_hot!=1 }">否</c:if>
+												${s.password}
 											</td>
 											<td align="center" style="HEIGHT: 22px">
-												<a href="${ pageContext.request.contextPath }/adminProduct?method=editUI&pid=${p.pid}">
+												<a href="${ pageContext.request.contextPath }/editSeller?method=editUI&sid=${s.sid}">
 													<img src="${pageContext.request.contextPath}/images/i_edit.gif" border="0" style="CURSOR: hand">
 												</a>
 											</td>
 									
 											<td align="center" style="HEIGHT: 22px">
-												<a href="${ pageContext.request.contextPath }/adminProduct?method=deletePro&pid=${p.pid}">
+												<a href="${ pageContext.request.contextPath }/manager?method=deleteSeller&sid=${s.sid}">
 													<img src="${pageContext.request.contextPath}/images/i_del.gif" width="16" height="16" border="0" style="CURSOR: hand">
 												</a>
 											</td>

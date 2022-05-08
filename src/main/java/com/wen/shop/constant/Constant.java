@@ -28,4 +28,10 @@ public interface Constant {
 
     //已完成
     int ORDER_FINISH = 3;
+
+    //登录
+    int LOGIN_NOW = 1;
+
+    //退出
+    int EXIT_NOW = 0;
 }

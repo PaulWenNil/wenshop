@@ -15,7 +15,7 @@ public class Product {
     private String pdesc;
     private Integer pflag; //是否下架 1：下架 0：未下架
 
-    //在多的乙方放入一个一的一方的对象用来表示哪个分类
+    //在多的一方放入一个一的一方的对象用来表示哪个分类
     private Category category;
 
     public String getPid() {

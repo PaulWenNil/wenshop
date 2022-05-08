@@ -15,6 +15,7 @@
           <element id="module-output" name="shop" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: eu.bitwalker:UserAgentUtils:1.21" />
           <element id="library" level="project" name="Maven: com.mchange:c3p0:0.9.5.2" />
           <element id="library" level="project" name="Maven: com.mchange:mchange-commons-java:0.2.11" />
           <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.8.3" />

@@ -85,12 +85,6 @@ else
 												src="${pageContext.request.contextPath}/images/mis_05a.jpg"
 												width="6" height="18">
 										</td>
-										<td width="155" valign="bottom"
-											background="${pageContext.request.contextPath}/images/mis_05b.jpg">
-											销售员用户名：
-											${seller.name}
-											<a href="${pageContext.request.contextPath}/seller?method=logout" target="_parent">退出</a>
-										</td>
 										<td width="10" align="right"
 											background="${pageContext.request.contextPath}/images/mis_05b.jpg">
 											<img src="${pageContext.request.contextPath}/images/mis_05c.jpg" width="6" height="18">

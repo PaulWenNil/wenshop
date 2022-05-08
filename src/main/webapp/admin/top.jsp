@@ -45,11 +45,11 @@ TH {
 							<td width="85%" align="left">
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<font color="#000000"> <script language="JavaScript">
-<!--
+
 tmpDate = new Date();
 date = tmpDate.getDate();
 month= tmpDate.getMonth() + 1 ;
-year= tmpDate.getYear();
+year= tmpDate.getFullYear();
 document.write(year);
 document.write("年");
 document.write(month);
@@ -73,7 +73,7 @@ document.write(myArray[weekday])
 else
 {document.write(myArray[weekday])
 };
-// -->
+
 									</script> </font>
 							</td>
 							<td width="15%">
@@ -87,8 +87,9 @@ else
 										</td>
 										<td width="155" valign="bottom"
 											background="${pageContext.request.contextPath}/images/mis_05b.jpg">
-											管理员用户名：
-											<font color="blue"><s:property value="#session.existAdminUser.username"/></font>
+											销售员用户名：
+											${seller.name}
+											<a href="${pageContext.request.contextPath}/seller?method=logout" target="_parent">退出</a>
 										</td>
 										<td width="10" align="right"
 											background="${pageContext.request.contextPath}/images/mis_05b.jpg">
