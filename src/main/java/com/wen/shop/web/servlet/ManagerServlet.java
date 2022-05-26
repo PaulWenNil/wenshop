@@ -1,9 +1,11 @@
 package com.wen.shop.web.servlet;
 
 
-import com.wen.shop.domain.Seller;
-import com.wen.shop.domain.SellerLogin;
-import com.wen.shop.domain.UserLogin;
+import com.wen.shop.dao.ExplorerDao;
+import com.wen.shop.dao.OperationDao;
+import com.wen.shop.dao.impl.ExplorerDaoImpl;
+import com.wen.shop.dao.impl.OperationDaoImpl;
+import com.wen.shop.domain.*;
 import com.wen.shop.service.SellerLoginService;
 import com.wen.shop.service.SellerService;
 import com.wen.shop.service.UserLoginService;
@@ -79,5 +81,34 @@ public class ManagerServlet extends BaseServlet {
             throw new RuntimeException();
         }
        return null;
+    }
+
+    public String findAllExplorer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            //调用service
+            ExplorerDao explorerDao = new ExplorerDaoImpl();
+            List<Explorer> list = explorerDao.findAllExplorer();
+
+            //将返回值放入request中，请求转发
+            request.setAttribute("list",list);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
+        return "/manager/userexplorerlist.jsp";
+    }
+
+    public String findAllOperation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            //调用service
+            OperationDao operationDao = new OperationDaoImpl();
+            List<Operation> list = operationDao.findAllOperation();
+
+            //将返回值放入request中，请求转发
+            request.setAttribute("list",list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "/manager/selleroperationlist.jsp";
     }
 }

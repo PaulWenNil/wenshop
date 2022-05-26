@@ -1,6 +1,10 @@
 package com.wen.shop.web.servlet;
 
+import com.wen.shop.dao.OperationDao;
+import com.wen.shop.dao.impl.OperationDaoImpl;
 import com.wen.shop.domain.Category;
+import com.wen.shop.domain.Operation;
+import com.wen.shop.domain.Seller;
 import com.wen.shop.service.CategoryService;
 import com.wen.shop.service.impl.CategoryServiceImpl;
 import com.wen.shop.utils.UUIDUtils;
@@ -27,6 +31,16 @@ public class AdminCategoryServlet extends BaseServlet {
             CategoryService cs = new CategoryServiceImpl();
             cs.editCname(cname,cid);
 
+            OperationDao operationDao = new OperationDaoImpl();
+            HttpSession session = request.getSession();
+            Seller seller = (Seller) session.getAttribute("seller");
+            String detail = "Edit category: "+ cname;
+
+            String operation_id = UUIDUtils.getId();
+            Long time = System.currentTimeMillis();
+            Operation operation = new Operation(seller.getSid(), detail, time, operation_id);
+            operationDao.insert(operation);
+
             //重定向
             response.sendRedirect(request.getContextPath()+"/adminCategory?method=findAll");
         } catch (Exception e) {
@@ -46,6 +60,16 @@ public class AdminCategoryServlet extends BaseServlet {
             //调用service完成添加操作
             CategoryService cs = new CategoryServiceImpl();
             cs.save(c);
+
+            OperationDao operationDao = new OperationDaoImpl();
+            HttpSession session = request.getSession();
+            Seller seller = (Seller) session.getAttribute("seller");
+            String detail = "Add category: "+ c.getCname();
+
+            String operation_id = UUIDUtils.getId();
+            Long time = System.currentTimeMillis();
+            Operation operation = new Operation(seller.getSid(), detail, time, operation_id);
+            operationDao.insert(operation);
 
             //重定向
             response.sendRedirect(request.getContextPath()+"/adminCategory?method=findAll");

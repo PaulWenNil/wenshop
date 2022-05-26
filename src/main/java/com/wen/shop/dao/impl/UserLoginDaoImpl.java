@@ -20,7 +20,7 @@ public class UserLoginDaoImpl implements UserLoginDao {
     @Override
     public List<UserLogin> findAllRecord() throws Exception {
         QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
-        String sql = "select * from ul_record";
+        String sql = "select * from ul_record order by `time` DESC";
         return qr.query(sql,new BeanListHandler<>(UserLogin.class));
     }
 }

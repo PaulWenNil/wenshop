@@ -19,7 +19,7 @@ public class SellerLoginDaoImpl implements SellerLoginDao {
     @Override
     public List<SellerLogin> findAllRecord() throws Exception {
         QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
-        String sql = "select * from sl_record";
+        String sql = "select * from sl_record order by `time` DESC";
         return qr.query(sql,new BeanListHandler<>(SellerLogin.class));
     }
 }

@@ -30,6 +30,10 @@
         d.add('0103','01','销售员账号管理');
         d.add('010301','0103','销售员账户列表','${pageContext.request.contextPath}/manager?method=findAllSeller','','mainFrame');
         d.add('010302','0103','添加销售员账户','${pageContext.request.contextPath}/addSeller?method=addUI','','mainFrame');
+        d.add('0104','01','用户浏览记录');
+        d.add('010401','0104','用户浏览时间、IP与时长','${pageContext.request.contextPath}/manager?method=findAllExplorer','','mainFrame');
+        d.add('0105','01','销售员操作记录');
+        d.add('010501','0105','销售员操作日志','${pageContext.request.contextPath}/manager?method=findAllOperation','','mainFrame');
 		document.write(d);
 		
 	</script>

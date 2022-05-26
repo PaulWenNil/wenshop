@@ -30,6 +30,8 @@
 	<body>
 		<%@include file="/jsp/head.jsp" %>
 
+		<p hidden id="explorer_id">${explorer_id}</p>
+
 		<div class="container">
 			<div class="row">
 				<div style="margin:0 auto;width:950px;">
@@ -92,6 +94,16 @@
 		function subForm(){
 			//让指定的表单提交
 			document.getElementById("form1").submit();
+		}
+
+		window.onload = async ()=>{
+			const now = new Date().getTime();
+			window.onbeforeunload = ()=>{
+				const explorer_id = document.getElementById("explorer_id").innerText;
+				const period = new Date().getTime()-now;
+				fetch("${pageContext.request.contextPath}/Rest?explorer_id="+
+						encodeURIComponent(explorer_id) + "&period=" + period);
+			}
 		}
 	</script>
 </html>

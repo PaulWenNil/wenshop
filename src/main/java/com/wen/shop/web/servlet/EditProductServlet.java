@@ -1,8 +1,12 @@
 package com.wen.shop.web.servlet;
 
 import com.wen.shop.constant.Constant;
+import com.wen.shop.dao.OperationDao;
+import com.wen.shop.dao.impl.OperationDaoImpl;
 import com.wen.shop.domain.Category;
+import com.wen.shop.domain.Operation;
 import com.wen.shop.domain.Product;
+import com.wen.shop.domain.Seller;
 import com.wen.shop.service.ProductService;
 import com.wen.shop.service.impl.ProductServiceImpl;
 import com.wen.shop.utils.UUIDUtils;
@@ -118,6 +122,15 @@ public class EditProductServlet extends HttpServlet {
 
             //调用service完成保存操作
             ps.edit(p);
+
+            OperationDao operationDao = new OperationDaoImpl();
+            Seller seller = (Seller) session.getAttribute("seller");
+            String detail = "Edit product: "+ p.getPname();
+
+            String operation_id = UUIDUtils.getId();
+            Long time = System.currentTimeMillis();
+            Operation operation = new Operation(seller.getSid(), detail, time, operation_id);
+            operationDao.insert(operation);
 
             //重定向
             response.sendRedirect(request.getContextPath()+"/adminProduct?method=findAll");

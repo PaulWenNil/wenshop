@@ -94,6 +94,58 @@
 		</div>
 		<!-- 分页结束=======================        -->
 
+		<div style="width:1210px;margin:0 auto; padding: 0 9px;border: 1px solid #ddd;border-top: 2px solid #999;height: 246px;">
+
+			<h4 style="width: 50%;float: left;font: 14px/30px " 微软雅黑 ";">猜你喜欢</h4>
+			<div style="width: 50%;float: right;text-align: right;"><a href="">more</a></div>
+			<div style="clear: both;"></div>
+
+			<div style="overflow: hidden;">
+
+				<ul style="list-style: none;">
+					<c:if test="${not empty user}">
+						<li style="width: 150px;height: 216;float: left;margin: 0 8px 0 0;padding: 0 18px 15px;text-align: center;">
+							<a href="${pageContext.request.contextPath}/product?method=getById&pid=986C954CD55E4E008111BDC94C6302FB">
+								<img src="${pageContext.request.contextPath}/products/1/cs10001.jpg" width="130px" height="130px" />
+								<p><font color="#FF0000">test1</font></p>
+							</a>
+
+						</li>
+						<li style="width: 150px;height: 216;float: left;margin: 0 8px 0 0;padding: 0 18px 15px;text-align: center;">
+							<a href="${pageContext.request.contextPath}/product?method=getById&pid=986C954CD55E4E008111BDC94C6302FB">
+								<img src="${pageContext.request.contextPath}/products/1/cs10002.jpg" width="130px" height="130px" />
+								<p><font color="#FF0000">test2</font></p>
+							</a>
+						</li>
+						<li style="width: 150px;height: 216;float: left;margin: 0 8px 0 0;padding: 0 18px 15px;text-align: center;">
+							<a href="${pageContext.request.contextPath}/product?method=getById&pid=986C954CD55E4E008111BDC94C6302FB">
+								<img src="${pageContext.request.contextPath}/products/1/cs10003.jpg" width="130px" height="130px" />
+								<p><font color="#FF0000">test3</font></p>
+							</a>
+						</li>
+						<li style="width: 150px;height: 216;float: left;margin: 0 8px 0 0;padding: 0 18px 15px;text-align: center;">
+							<a href="${pageContext.request.contextPath}/product?method=getById&pid=986C954CD55E4E008111BDC94C6302FB">
+								<img src="${pageContext.request.contextPath}/products/1/cs10004.jpg" width="130px" height="130px" />
+								<p><font color="#FF0000">test4</font></p>
+							</a>
+						</li>
+						<li style="width: 150px;height: 216;float: left;margin: 0 8px 0 0;padding: 0 18px 15px;text-align: center;">
+							<a href="${pageContext.request.contextPath}/product?method=getById&pid=986C954CD55E4E008111BDC94C6302FB">
+								<img src="${pageContext.request.contextPath}/products/1/cs10005.jpg" width="130px" height="130px" />
+								<p><font color="#FF0000">test5</font></p>
+							</a>
+						</li>
+					</c:if>
+					<c:if test="${empty user}">
+						<a href="${pageContext.request.contextPath }/user?method=loginUI">
+							<p><font color="#FF0000">请先登录</font></p>
+						</a>
+					</c:if>
+				</ul>
+
+			</div>
+		</div>
+
 		<div style="margin-top:50px;">
 			<img src="${pageContext.request.contextPath}/image/footer.jpg" width="100%" height="78" alt="我们的优势" title="我们的优势" />
 		</div>

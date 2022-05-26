@@ -1,9 +1,15 @@
 package com.wen.shop.web.servlet;
 
+import com.wen.shop.dao.ExplorerDao;
+import com.wen.shop.dao.impl.ExplorerDaoImpl;
+import com.wen.shop.domain.Explorer;
 import com.wen.shop.domain.PageBean;
 import com.wen.shop.domain.Product;
+import com.wen.shop.domain.User;
 import com.wen.shop.service.ProductService;
 import com.wen.shop.service.impl.ProductServiceImpl;
+import com.wen.shop.utils.UUIDUtils;
+import com.wen.shop.utils.UserAgentUtils;
 import com.wen.shop.web.servlet.base.BaseServlet;
 
 import javax.servlet.*;
@@ -26,7 +32,23 @@ public class ProductServlet extends BaseServlet {
 
             //将product放入request域中，请求转发/jsp/product_info.jsp
             request.setAttribute("bean",pro);
+
+            HttpSession session = request.getSession();
+            User user = (User)session.getAttribute("user");
+
+            if(user != null){
+                String explorer_id = UUIDUtils.getId();
+                request.setAttribute("explorer_id",explorer_id);
+
+                String IP = UserAgentUtils.getIpAddr(request);
+                Long time = System.currentTimeMillis();
+
+                Explorer explorer = new Explorer(user.getUid(), IP, pid, time, 0L, explorer_id);
+                ExplorerDao explorerDao = new ExplorerDaoImpl();
+                explorerDao.insert(explorer);
+            }
         } catch (Exception e) {
+            e.printStackTrace();
             request.setAttribute("msg","查询此商品失败");
             return "/jsp/msg.jsp";
         }
@@ -46,6 +68,21 @@ public class ProductServlet extends BaseServlet {
 
             //将product放入request域中，请求转发/jsp/product_info.jsp
             request.setAttribute("bean",pro);
+
+            HttpSession session = request.getSession();
+            User user = (User)session.getAttribute("user");
+
+            if(user != null){
+                String explorer_id = UUIDUtils.getId();
+                request.setAttribute("explorer_id",explorer_id);
+
+                String IP = UserAgentUtils.getIpAddr(request);
+                Long time = System.currentTimeMillis();
+
+                Explorer explorer = new Explorer(user.getUid(),IP, pro.getPid(), time,  0L, explorer_id);
+                ExplorerDao explorerDao = new ExplorerDaoImpl();
+                explorerDao.insert(explorer);
+            }
         } catch (Exception e) {
             request.setAttribute("msg","查询此商品失败");
             return "/jsp/msg.jsp";
